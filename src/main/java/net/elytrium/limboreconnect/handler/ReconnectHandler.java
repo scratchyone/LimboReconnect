@@ -64,7 +64,7 @@ public class ReconnectHandler implements LimboSessionHandler {
     PingOptions.Builder options = PingOptions.builder();
     options.timeout(Duration.ofMillis(CONFIG.pingTimeout));
 
-    this.server.ping(options.build()).whenComplete((ping, exception) -> {
+    this.server.ping(options.build(), this.player.getProxyPlayer().getVirtualHost().toString()).whenComplete((ping, exception) -> {
       if (exception != null) {
         if (CONFIG.debug) {
           LimboReconnect.getLogger()
